@@ -1,36 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
-<body>
-  
-  <script type="text/javascript">
-    /*
-      Promise基本使用
-    */
-    // console.log(typeof Promise)
-    // console.dir(Promise);
 
-    var p = new Promise(function(resolve, reject){
-      // 这里用于实现异步任务
-      setTimeout(function(){
-        var flag = false;
-        if(flag) {
-          // 正常情况
-          resolve('hello');
-        }else{
-          // 异常情况
-          reject('出错了');
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        #app {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
-      }, 100);
-    });
-    p.then(function(data){
-      console.log(data)
-    },function(info){
-      console.log(info)
-    });
-  </script>
+        
+        .change-data {
+            background-color: rgb(16, 221, 125);
+            cursor: pointer;
+        }
+        
+        .clic {
+            background-color: rgb(109, 233, 8);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <!-- <div class="change-data" @click="this.flag = !this.flag">改变flag</div> 可以通过这个使用改变flag -->
+        <div class="clic" @click="creatPromise">发送请求</div>
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+
+                el: '#app',
+                data: {
+                    flag: true
+                },
+                methods: {
+                    creatPromise: () => {
+                        var p = new Promise(function(resolve, reject) {
+                            // 这里用于实现异步任务
+                            setTimeout(function() {
+                                let flag = this.flag;
+                                if (flag) {
+                                    // 正常情况
+                                    resolve('promise normally using');
+                                } else {
+                                    // 异常情况
+                                    reject('出错了');
+                                }
+                            }, 100);
+                        });
+                        p.then(function(data) {
+                            console.log(data + "promise使用正确打印");
+                        }, function(info) {
+                            console.log(info + "promise错误");
+                        });
+                        this.flag = !this.flag; // 也可以通过这里，在每次执行之后，改变flag
+
+                    },
+                }
+
+
+            })
+            /*
+                          Promise基本使用
+                        */
+            // console.log(typeof Promise)
+            // console.dir(Promise);
+    </script>
 </body>
+
 </html>
