@@ -12,8 +12,9 @@ app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Headers', 'mytoken');
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    res.header("Access-Control-Allow-Headers", "mytoken");
+    // res.header("Content-Type", "application/json");
     next();
 });
 app.get('/async1', (req, res) => {
@@ -67,7 +68,8 @@ app.delete('/books/:id', (req, res) => {
     res.send('DELETE请求传递参数!' + req.params.id)
 })
 app.post('/books', (req, res) => {
-    res.send('POST请求传递参数!' + req.body.uname + '---' + req.body.pwd)
+
+    res.send('POST请求传递参数! fetch的垃圾json传值' + JSON.stringify(req.body.uname))
 })
 app.put('/books/:id', (req, res) => {
     res.send('PUT请求传递参数!' + req.params.id + '---' + req.body.uname + '---' + req.body.pwd)
