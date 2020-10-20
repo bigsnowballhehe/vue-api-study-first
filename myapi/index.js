@@ -68,8 +68,18 @@ app.delete('/books/:id', (req, res) => {
     res.send('DELETE请求传递参数!' + req.params.id)
 })
 app.post('/books', (req, res) => {
+    let str = ""; // 不然就是  有个undefined
+    req.on("data", function(data) {
 
-    res.send('POST请求传递参数! fetch的垃圾json传值' + JSON.stringify(req.body.uname))
+        str += data;
+    })
+    req.on("end", function() {
+
+        res.send(str)
+
+    })
+
+
 })
 app.put('/books/:id', (req, res) => {
     res.send('PUT请求传递参数!' + req.params.id + '---' + req.body.uname + '---' + req.body.pwd)

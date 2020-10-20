@@ -10,8 +10,8 @@
 <body>
     <script type="text/javascript">
         /*
-                                                                                          Fetch API 调用接口传递参数
-                                                                                        */
+                                                                                                                                                                                                                                                                                          Fetch API 调用接口传递参数
+                                                                                                                                                                                                                                                                                        */
 
         // GET参数传递-传统URL
         // fetch('http://localhost:3000/books?id=123', {
@@ -71,25 +71,31 @@
             .then(function(data) {
                 return data.text();
             }).then(function(data) {
+
                 console.log(data)
+                let st = JSON.parse(data)
+                console.log(st)
+
+
+
             });
 
         // PUT请求传参
         // fetch('http://localhost:3000/books/123', {
-        //   method: 'put',
-        //   body: JSON.stringify({
-        //     uname: '张三',
-        //     pwd: '789'
-        //   }),
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   }
-        // })
-        //   .then(function(data){
-        //     return data.text();
-        //   }).then(function(data){
-        //     console.log(data)
-        //   });
+        //         method: 'put',
+        //         body: JSON.stringify({
+        //             uname: '张三',
+        //             pwd: '789'
+        //         }),
+        //         headers: {
+        //             'Content-Type': 'text/plain'
+        //         }
+        //     })
+        //     .then(function(data) {
+        //         return data.text();
+        //     }).then(function(data) {
+        //         console.log(data)
+        //     });
     </script>
 </body>
 
